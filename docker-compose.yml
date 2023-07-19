@@ -1,0 +1,18 @@
+version: '3.9'
+volumes:
+  redis_data: {}
+networks:
+  ee-net:
+    driver: bridge
+services:
+  redis:
+    image: 'redis:latest'
+    container_name: redis
+    hostname: redis
+    networks:
+      - ee-net
+    ports:
+      - '6379:6379'
+    command: '--requirepass redisPassword'
+    volumes:
+      - redis_data:/data
