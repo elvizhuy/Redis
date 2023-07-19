@@ -14,4 +14,3 @@ services:
     command: '--requirepass redisPassword'
     volumes:
       - redis_data:/data
-      - redis.conf:/usr/local/etc/redis/redis.conf
