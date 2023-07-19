@@ -1,9 +1,4 @@
 version: '3.9'
-volumes:
-  redis_data: {}
-networks:
-  ee-net:
-    driver: bridge
 services:
   redis:
     image: 'redis:latest'
@@ -11,6 +6,9 @@ services:
     hostname: redis
     ports:
       - '6379:6379'
-    command: '--requirepass redisPassword'
+    command: redis-server --requirepass 123123
     volumes:
-      - redis_data:/data
+      - ./Redis/redis.conf:/usr/local/etc/redis/redis.conf
+    
+    environment:
+     - REDIS_REPLICATION_MODE=master
