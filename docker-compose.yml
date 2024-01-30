@@ -4,11 +4,15 @@ services:
     image: 'redis:latest'
     container_name: redis
     hostname: redis
+    restart: always
     ports:
       - '6379:6379'
     command: redis-server --requirepass 123123
     volumes:
       - ./Redis/redis.conf:/usr/local/etc/redis/redis.conf
-    
+      - ./Redis/dаta:/root/redis
     environment:
      - REDIS_REPLICATION_MODE=master
+     - REDIS_PASSWORD=123123
+     - REDIS_PORT=6379
+     - REDIS_DATABASES=16
